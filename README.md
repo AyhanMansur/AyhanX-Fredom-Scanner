@@ -5,7 +5,7 @@
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen)](https://github.com/AyhanMansur/dowinb)
 [![Platform](https://img.shields.io/badge/Platform-Termux%20%7C%20VPS%20%7C%20Linux-blue)](https://github.com/AyhanMansur/dowinb)
 
-> **Transform boring Range ips scanners to  `ℂ𝕠𝕠𝕝 𝕃𝕚𝕟𝕦𝕩|𝕋𝕙𝕖𝕞𝕖𝕕☘️🆒🏁` faster experience.**
+> **Transform boring Range ip scanners to  `ℂ𝕠𝕠𝕝 𝕃𝕚𝕟𝕦𝕩|𝕊𝕔𝕒𝕟𝕟𝕖𝕣☘️🆒🏁` faster experience.**
 > 🚀 **Zero delay ** | 🎨 **Cyberpunk UI** | 📱 **Mobile Optimized**
   <i>A lightweight, cross-platform utility for  scan every simple range ips.</i>
 </div>
