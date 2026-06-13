@@ -27,7 +27,7 @@ BANNER = f"""
 """
 
 # 🔥 محدودیت حداکثر ۱۲۰,۰۰۰ آدرس
-SCAN_LIMIT = 120000
+SCAN_LIMIT ='disabeld by Ayhan Mansur'
 
 # ================== SCANNER FUNCTIONS ==================
 def scan_host(ip):
@@ -78,9 +78,9 @@ def main():
         sys.exit(0)
 
     # لینک مستقیم فایل Ranges.txt در گیت‌هاب
-    url = "https://raw.githubusercontent.com/AyhanMansur/QZ-Scanner/refs/heads/main/%E2%84%9A%E2%84%A4-%F0%9D%95%8A%F0%9D%95%94%F0%9D%95%92%F0%9D%95%9F%F0%9D%95%9F%F0%9D%95%96%F0%9D%95%A3%20%F0%9F%8D%8F%F0%9F%A7%91%E2%80%8D%F0%9F%92%BB%F0%9F%8C%BF/Range.txt"
+    url = "https://raw.githubusercontent.com/AyhanMansur/AyhanX-Fredom-Scanner/refs/heads/main/%F0%9D%94%B8%F0%9D%95%AA%F0%9D%95%99%F0%9D%95%92%F0%9D%95%9F%F0%9D%95%8F-%F0%9D%94%BD%F0%9D%95%A3%F0%9D%95%96%F0%9D%95%95%F0%9D%95%A0%F0%9D%95%9E-%F0%9D%95%8A%F0%9D%95%94%F0%9D%95%92%F0%9D%95%9F%F0%9D%95%9F%F0%9D%95%96%F0%9D%95%A3-%F0%9F%A7%91%E2%80%8D%F0%9F%92%BB%F0%9F%8C%BF/Range.txt"
 
-    print(f"{LITBU}📡 ℚℤ-𝕊𝕔𝕒𝕟𝕟𝕖𝕣 - Downloading range list from GitHub...{ENDC}")
+    print(f"{LITBU}📡 𝔸𝕪𝕙𝕒𝕟𝕏-𝔽𝕣𝕖𝕕𝕠𝕞-𝕊𝕔𝕒𝕟𝕟𝕖𝕣 - Downloading range list from GitHub...{ENDC}")
 
     try:
         response = requests.get(url, timeout=15)
