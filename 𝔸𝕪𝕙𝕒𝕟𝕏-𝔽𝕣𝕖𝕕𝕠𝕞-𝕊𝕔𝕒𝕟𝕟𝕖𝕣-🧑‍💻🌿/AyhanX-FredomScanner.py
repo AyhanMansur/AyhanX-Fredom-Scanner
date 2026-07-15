@@ -3,8 +3,6 @@ import subprocess
 import random
 import requests
 from ipaddress import ip_network
-
-# ================== STYLING ==================
 OKGREEN = '\033[92m'
 WARNING = '\033[0;33m'
 FAIL = '\033[91m'
@@ -20,16 +18,19 @@ RAND_COLOR = random.choice(colors)
 
 BANNER = f"""
 {RAND_COLOR}
-{OKGREEN}╔════════════════════════════════════════════════════════════════════════╗
-║                    {BOLD}𝔸𝕪𝕙𝕒𝕟𝕏-𝔽𝕣𝕖𝕕𝕠𝕞-𝕊𝕔𝕒𝕟𝕟𝕖𝕣-🧑‍💻🌿{ENDC}{OKGREEN}                              ║
-║                  IP Range Scanner -  Made by Ayhan Mansur                   ║
-╚════════════════════════════════════════════════════════════════════════╝{ENDC}
+{OKGREEN}   █████████              █████                           █████ █████             █████████                                                             
+  ███▒▒▒▒▒███            ▒▒███                           ▒▒███ ▒▒███             ███▒▒▒▒▒███                                                            
+ ▒███    ▒███  █████ ████ ▒███████    ██████   ████████   ▒▒███ ███             ▒███    ▒▒▒   ██████   ██████   ████████   ████████    ██████  ████████ 
+ ▒███████████ ▒▒███ ▒███  ▒███▒▒███  ▒▒▒▒▒███ ▒▒███▒▒███   ▒▒█████    ██████████▒▒█████████  ███▒▒███ ▒▒▒▒▒███ ▒▒███▒▒███ ▒▒███▒▒███  ███▒▒███▒▒███▒▒███
+ ▒███▒▒▒▒▒███  ▒███ ▒███  ▒███ ▒███   ███████  ▒███ ▒███    ███▒███  ▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒▒███▒███ ▒▒▒   ███████  ▒███ ▒███  ▒███ ▒███ ▒███████  ▒███ ▒▒▒ 
+ ▒███    ▒███  ▒███ ▒███  ▒███ ▒███  ███▒▒███  ▒███ ▒███   ███ ▒▒███             ███    ▒███▒███  ███ ███▒▒███  ▒███ ▒███  ▒███ ▒███ ▒███▒▒▒   ▒███     
+ █████   █████ ▒▒███████  ████ █████▒▒████████ ████ █████ █████ █████           ▒▒█████████ ▒▒██████ ▒▒████████ ████ █████ ████ █████▒▒██████  █████    
+▒▒▒▒▒   ▒▒▒▒▒   ▒▒▒▒▒███ ▒▒▒▒ ▒▒▒▒▒  ▒▒▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒             ▒▒▒▒▒▒▒▒▒   ▒▒▒▒▒▒   ▒▒▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒  ▒▒▒▒▒▒  ▒▒▒▒▒     
+                ███ ▒███                                                                                                                                
+               ▒▒██████                                                                                                                                 
+                ▒▒▒▒▒▒                                                                                                                                  
 """
-
-# 🔥 محدودیت حداکثر ۱۲۰,۰۰۰ آدرس
 SCAN_LIMIT = 120000
-
-# ================== SCANNER FUNCTIONS ==================
 def scan_host(ip):
     param = '-n' if sys.platform.startswith('win') else '-c'
     try:
@@ -43,11 +44,7 @@ def scan_network(network_str, scanned_so_far):
     """اسکن یک محدوده با رعایت محدودیت"""
     try:
         network = ip_network(network_str, strict=False)
-        
-        # محاسبه تعداد آدرس‌هایی که هنوز می‌توانیم اسکن کنیم
         remaining = SCAN_LIMIT - scanned_so_far
-        
-        # اگر محدوده بزرگتر از باقی‌مانده است، فقط تا سقف اسکن کن
         addresses = list(network.hosts())
         if len(addresses) > remaining:
             addresses = addresses[:remaining]
@@ -66,18 +63,12 @@ def scan_network(network_str, scanned_so_far):
     except Exception as e:
         print(f"{FAIL}❌ Error in range {network_str}: {e}{ENDC}")
         return [], 0
-
-# ================== MAIN ==================
 def main():
     print(BANNER)
-
-    # پرسش شروع اسکن با پیش‌فرض Yes
     start_choice = input(f"{CYAN}❓ Do you want to start scan? [Y/n]: {ENDC}").strip().lower()
     if start_choice == 'n':
         print(f"{YELLOW}🚫 Scan cancelled by user.{ENDC}")
         sys.exit(0)
-
-    # لینک مستقیم فایل Ranges.txt در گیت‌هاب
     url = "https://raw.githubusercontent.com/AyhanMansur/AyhanX-Fredom-Scanner/refs/heads/main/%F0%9D%94%B8%F0%9D%95%AA%F0%9D%95%99%F0%9D%95%92%F0%9D%95%9F%F0%9D%95%8F-%F0%9D%94%BD%F0%9D%95%A3%F0%9D%95%96%F0%9D%95%95%F0%9D%95%A0%F0%9D%95%9E-%F0%9D%95%8A%F0%9D%95%94%F0%9D%95%92%F0%9D%95%9F%F0%9D%95%9F%F0%9D%95%96%F0%9D%95%A3-%F0%9F%A7%91%E2%80%8D%F0%9F%92%BB%F0%9F%8C%BF/Range.txt"
 
     print(f"{LITBU}📡 𝔸𝕪𝕙𝕒𝕟𝕏-𝔽𝕣𝕖𝕕𝕠𝕞-𝕊𝕔𝕒𝕟𝕟𝕖𝕣-🧑‍💻🌿 Downloading range list from GitHub...{ENDC}")
