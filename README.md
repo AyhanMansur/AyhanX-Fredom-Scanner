@@ -9,7 +9,11 @@
 > 🚀 **Zero delay ** | 🎨 **Cyberpunk UI** | 📱 **Mobile Optimized**
   <i>A lightweight, cross-platform utility for  scan every simple range ips.</i>
 </div>
+## 📸 Visual Preview
 
+<div align="center">
+
+![Terminal Interface](https://github.com/user-attachments/assets/05bd3937-08d8-41fa-93f9-34c607a99771)
 ---
 
 ## 📋 Overview
