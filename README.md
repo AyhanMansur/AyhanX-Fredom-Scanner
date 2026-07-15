@@ -1,17 +1,19 @@
 
-# 📸 Preview
-
 <p align="center">
 <img src="https://github.com/user-attachments/assets/05bd3937-08d8-41fa-93f9-34c607a99771" width="850">
 </p>
-
----
-# 🧑‍💻🌿 AyhanX Freedom Scanner
+# 𝔸𝕪𝕙𝕒𝕟𝕏-𝔽𝕣𝕖𝕕𝕠𝕞-𝕊𝕔𝕒𝕟𝕟𝕖𝕣-🧑‍💻🌿
 <div align="center">
 
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen)](https://github.com/AyhanMansur/AyhanX-Fredom-Scanner)
-[![Platform](https://img.shields.io/badge/Platform-Termux%20%7C%20Linux%20%7C%20VPS-blue)](https://github.com/AyhanMansur/AyhanX-Fredom-Scanner)
-### ⚡ Fast • Lightweight • Cross-Platform
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen)](https://github.com/AyhanMansur/dowinb)
+[![Platform](https://img.shields.io/badge/Platform-Termux%20%7C%20VPS%20%7C%20Linux-blue)](https://github.com/AyhanMansur/dowinb)
+
+> **Transform boring Range ip scanners to  `ℂ𝕠𝕠𝕝 𝕃𝕚𝕟𝕦𝕩|𝕊𝕔𝕒𝕟𝕟𝕖𝕣☘️🆒🏁` faster experience.**
+> 🚀 **Zero delay ** | 🎨 **Cyberpunk UI** | 📱 **Mobile Optimized**
+  <i>A lightweight, cross-platform utility for  scan every simple range ips.</i>
+</div>
+
+---
 
 *A modern Python utility for scanning IP ranges quickly from Linux, VPS, and Android (Termux).*
 ---
