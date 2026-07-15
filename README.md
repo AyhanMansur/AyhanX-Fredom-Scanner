@@ -1,18 +1,3 @@
-# 🧑‍💻🌿 AyhanX Freedom Scanner
-
-<div align="center">
-
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen)](https://github.com/AyhanMansur/AyhanX-Fredom-Scanner)
-[![Platform](https://img.shields.io/badge/Platform-Termux%20%7C%20Linux%20%7C%20VPS-blue)](https://github.com/AyhanMansur/AyhanX-Fredom-Scanner)
-[![Python](https://img.shields.io/badge/Python-3.6+-yellow)](https://python.org)
-
-### ⚡ Fast • Lightweight • Cross-Platform
-
-*A modern Python utility for scanning IP ranges quickly from Linux, VPS, and Android (Termux).*
-
-</div>
-
----
 
 # 📸 Preview
 
@@ -21,7 +6,16 @@
 </p>
 
 ---
+# 🧑‍💻🌿 AyhanX Freedom Scanner
+<div align="center">
 
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen)](https://github.com/AyhanMansur/AyhanX-Fredom-Scanner)
+[![Platform](https://img.shields.io/badge/Platform-Termux%20%7C%20Linux%20%7C%20VPS-blue)](https://github.com/AyhanMansur/AyhanX-Fredom-Scanner)
+### ⚡ Fast • Lightweight • Cross-Platform
+
+*A modern Python utility for scanning IP ranges quickly from Linux, VPS, and Android (Termux).*
+---
+</div>
 # 📖 Overview
 
 **AyhanX Freedom Scanner** is a lightweight Python tool that scans IPv4 ranges with speed and simplicity.
