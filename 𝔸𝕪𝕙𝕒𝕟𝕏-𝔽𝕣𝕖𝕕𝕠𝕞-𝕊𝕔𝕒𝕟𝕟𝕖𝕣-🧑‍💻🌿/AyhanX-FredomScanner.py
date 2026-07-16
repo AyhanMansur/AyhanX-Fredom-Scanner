@@ -2,6 +2,7 @@ import sys
 import subprocess
 import random
 import requests
+import platform
 from ipaddress import ip_network
 OKGREEN = '\033[92m'
 WARNING = '\033[0;33m'
@@ -12,7 +13,6 @@ YELLOW = '\033[93m'
 CYAN = '\033[96m'
 PURPLE = '\033[95m'
 BOLD = '\033[1m'
-
 colors = [OKGREEN, LITBU, CYAN, PURPLE]
 RAND_COLOR = random.choice(colors)
 
@@ -22,7 +22,7 @@ BANNER = f"""
   ███▒▒▒▒▒███            ▒▒███                           ▒▒███ ▒▒███             ███▒▒▒▒▒███                                                            
  ▒███    ▒███  █████ ████ ▒███████    ██████   ████████   ▒▒███ ███             ▒███    ▒▒▒   ██████   ██████   ████████   ████████    ██████  ████████ 
  ▒███████████ ▒▒███ ▒███  ▒███▒▒███  ▒▒▒▒▒███ ▒▒███▒▒███   ▒▒█████    ██████████▒▒█████████  ███▒▒███ ▒▒▒▒▒███ ▒▒███▒▒███ ▒▒███▒▒███  ███▒▒███▒▒███▒▒███
- ▒███▒▒▒▒▒███  ▒███ ▒███  ▒███ ▒███   ███████  ▒███ ▒███    ███▒███  ▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒▒███▒███ ▒▒▒   ███████  ▒███ ▒███  ▒███ ▒███ ▒███████  ▒███ ▒▒▒ 
+ ▒███▒▒▒▒▒███  ▒███ ▒███    ▒███ ▒███   ███████  ▒███ ▒███    ███▒███  ▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒▒███▒███ ▒▒▒   ███████  ▒███ ▒███  ▒███ ▒███ ▒███████  ▒███ ▒▒▒ 
  ▒███    ▒███  ▒███ ▒███  ▒███ ▒███  ███▒▒███  ▒███ ▒███   ███ ▒▒███             ███    ▒███▒███  ███ ███▒▒███  ▒███ ▒███  ▒███ ▒███ ▒███▒▒▒   ▒███     
  █████   █████ ▒▒███████  ████ █████▒▒████████ ████ █████ █████ █████           ▒▒█████████ ▒▒██████ ▒▒████████ ████ █████ ████ █████▒▒██████  █████    
 ▒▒▒▒▒   ▒▒▒▒▒   ▒▒▒▒▒███ ▒▒▒▒ ▒▒▒▒▒  ▒▒▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒             ▒▒▒▒▒▒▒▒▒   ▒▒▒▒▒▒   ▒▒▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒  ▒▒▒▒▒▒  ▒▒▒▒▒     
@@ -30,7 +30,6 @@ BANNER = f"""
                ▒▒██████                                                                                                                                 
                 ▒▒▒▒▒▒                                                                                                                                  
 """
-SCAN_LIMIT = 120000
 def scan_host(ip):
     param = '-n' if sys.platform.startswith('win') else '-c'
     try:
@@ -40,25 +39,24 @@ def scan_host(ip):
     except:
         return False
 
-def scan_network(network_str, scanned_so_far):
-    """اسکن یک محدوده با رعایت محدودیت"""
+def scan_network(network_str, limit=None):
+    """اسکن یک محدوده با محدودیت اختیاری"""
     try:
         network = ip_network(network_str, strict=False)
-        remaining = SCAN_LIMIT - scanned_so_far
         addresses = list(network.hosts())
-        if len(addresses) > remaining:
-            addresses = addresses[:remaining]
-            print(f"{WARNING}⚠️ Limit reached: scanning only {remaining} of {len(network.hosts())} addresses in {network_str}{ENDC}")
-        
+
+        if limit is not None:
+            addresses = addresses[:limit]
+
         color = random.choice(colors)
-        print(f"{color}🔍 Scanning {network_str} ({len(addresses)} addresses, total scanned so far: {scanned_so_far + len(addresses)}/{SCAN_LIMIT})...{ENDC}")
+        print(f"{color}🔍 Scanning {network_str} ({len(addresses)} addresses)...{ENDC}")
 
         active_hosts = []
         for ip in addresses:
             if scan_host(ip):
                 active_hosts.append(str(ip))
                 print(f"{OKGREEN}   ✅ {ip} is active{ENDC}")
-        
+
         return active_hosts, len(addresses)
     except Exception as e:
         print(f"{FAIL}❌ Error in range {network_str}: {e}{ENDC}")
@@ -90,21 +88,35 @@ def main():
         sys.exit(1)
 
     print(f"{OKGREEN}✅ Downloaded {len(ranges)} IP ranges.{ENDC}")
-    print(f"{WARNING}⚠️ Scan limit: {SCAN_LIMIT} addresses{ENDC}")
+
+    limit_input = input(f"{CYAN}🔢 How many IPs do you want to scan? (press Enter for all): {ENDC}").strip()
+    scan_limit = None
+    if limit_input:
+        try:
+            scan_limit = int(limit_input)
+            if scan_limit <= 0:
+                raise ValueError
+        except ValueError:
+            print(f"{WARNING}⚠️ Invalid number. Scanning all IPs.{ENDC}")
+            scan_limit = None
+
     print(f"{LITBU}🚀 Starting scan...{ENDC}\n")
 
     all_active = []
     scanned_so_far = 0
     processed_ranges = 0
+    remaining_limit = scan_limit
 
     for r in ranges:
-        if scanned_so_far >= SCAN_LIMIT:
-            print(f"{WARNING}⚠️ Scan limit reached ({SCAN_LIMIT} addresses). Stopping...{ENDC}")
+        if remaining_limit is not None and remaining_limit <= 0:
             break
+
         processed_ranges += 1
-        active, scanned = scan_network(r, scanned_so_far)
+        active, scanned = scan_network(r, limit=remaining_limit)
         all_active.extend(active)
         scanned_so_far += scanned
+        if remaining_limit is not None:
+            remaining_limit -= scanned
 
     print(f"\n{BOLD}{OKGREEN}📊 Final Summary:{ENDC}")
     print(f"{CYAN}   ➤ IP ranges processed: {processed_ranges}{ENDC}")
@@ -114,6 +126,24 @@ def main():
         print(f"\n{YELLOW}📝 List of active IPs:{ENDC}")
         for ip in all_active:
             print(f"   {OKGREEN}► {ip}{ENDC}")
+
+    copy_choice = input(f"{CYAN}📋 Do you want to copy the results to clipboard? [y/N]: {ENDC}").strip().lower()
+    if copy_choice in {'y', 'yes'}:
+        try:
+            result_text = "\n".join(all_active)
+            if platform.system() == "Windows":
+                import win32clipboard
+                win32clipboard.OpenClipboard()
+                win32clipboard.EmptyClipboard()
+                win32clipboard.SetClipboardText(result_text)
+                win32clipboard.CloseClipboard()
+            elif platform.system() == "Linux":
+                subprocess.run(['xclip', '-selection', 'clipboard'], input=result_text, text=True, check=False)
+            elif platform.system() == "Darwin":
+                subprocess.run(['pbcopy'], input=result_text, text=True, check=False)
+            print(f"{OKGREEN}✅ Results copied to clipboard.{ENDC}")
+        except Exception as e:
+            print(f"{WARNING}⚠️ Could not copy results: {e}{ENDC}")
 
 if __name__ == "__main__":
     main()
