@@ -81,3 +81,13 @@ b2n.ir
 bakieh.ir
 # domains outside  of iran under cloudflare network
 kali.org
+chatgpt.com
+encryptedsni.com
+cloudflare-esni.com
+www.speedtest.net
+linux.cloudflare.com
+cloudflare-quic.com
+temp-mail.org
+atomicmail.io
+check-host.net
+cloudflareaccess.com
