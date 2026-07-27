@@ -70,3 +70,14 @@ aslanbilit.ir
 asnu.ir
 asooartland.alirezaghassemi.ir
 atkerman.ir
+atlasleaks.ir
+autocdn.aiki-apps.ir
+autocdn.aiki-ticket.ir
+autoir.sefsoor.ir
+azadmodir.ir
+azkhoneh.ir
+b.amozeshebargh.ir
+b2n.ir
+bakieh.ir
+# domains outside  of iran under cloudflare network
+kali.org
